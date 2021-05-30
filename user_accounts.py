@@ -1,0 +1,59 @@
+import random
+import string
+import pyperclip
+
+class userAccounts:
+    '''
+    Class that stores user accounts and credentials
+    '''
+    accounts = [] # empty list
+
+    def __init__(self, platform, username, password):
+        '''
+        this function allows users to store their various account details
+            Args: platform,username,password
+        '''
+        self.platform = platform
+        self.username = username
+        self.password = password
+
+    def add_account(self):
+        '''
+        this function adds accounts to the accounts list
+        '''
+        self.accounts.append(self)
+
+    # def random_password(length, chars=string.ascii_letters + string.digits):
+    #     return ''.join(random.choice(chars) for _ in range(length))
+
+    @classmethod
+    def account_exist(cls, platform, username):
+        for account in cls.accounts:
+            if account.username == username and account.platform == platform:
+                return True
+            return False
+
+    @classmethod
+    def get_account(cls, platform, username):
+        '''
+        this function searchs for an existing account relative to its username and the platform given
+        '''
+        for account in cls.accounts:
+            if account.username == username and account.platform == platform:
+                return account
+
+    @classmethod
+    def list_all_credentials(cls):
+        '''
+        function that allows users to view their account details
+        '''
+        i=0
+        for account in cls.accounts:
+            i+=1
+            print(f'  =>{i}. Platform {account.platform} Username: {account.username} password: {account.password}')
+
+    @classmethod
+    def copy_password(cls, username, platform):
+        for account in cls.accounts:
+            if account.username == username and account.platform == platform:
+                return pyperclip.copy(account.password)

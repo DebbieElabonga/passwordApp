@@ -30,8 +30,8 @@ def login_account():
         elif acc_short_code =='ex':
             reg_existing_platform()
         else:
-             print('Invalid Option')
-             login_account()
+            print('Invalid Option')
+            login_account()
 def reg_existing_platform():
     ex_platform = input('Enter platform e.g. Facebook,Google, Instagram etc.: ')
     ex_username = input('Enter account username/email: ')
@@ -81,5 +81,5 @@ def main():
     else:
         print('Invalid Option')
         main()
-
+if __name__ == '__main__':
     main()
